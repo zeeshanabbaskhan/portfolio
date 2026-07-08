@@ -50,6 +50,11 @@ export const defaultPortfolioData: PortfolioData = {
       "24/7 learning mode",
     ],
   },
+  githubSection: {
+    heading: "GitHub Activity",
+    subtext:
+      "Open-source contributions, coding streaks, languages, and repository activity pulled live from GitHub.",
+  },
   experienceSection: {
     heading: "Experience",
     subtext:
@@ -306,6 +311,7 @@ export const defaultPortfolioData: PortfolioData = {
   },
   navigation: [
     { id: "about", label: "About Me", enabled: true },
+    { id: "github", label: "GitHub", enabled: true },
     { id: "experience", label: "Experience", enabled: true },
     { id: "projects", label: "Projects", enabled: true },
     { id: "education", label: "Education", enabled: true },
@@ -315,6 +321,7 @@ export const defaultPortfolioData: PortfolioData = {
     hero: true,
     skills: true,
     aboutCard: true,
+    github: true,
     experience: true,
     projects: true,
     education: true,

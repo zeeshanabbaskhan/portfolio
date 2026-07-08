@@ -159,6 +159,7 @@ function normalizeNavigation(value: unknown): NavItem[] {
         const id = source.id;
         const navId: NavItem["id"] =
           id === "about" ||
+          id === "github" ||
           id === "experience" ||
           id === "projects" ||
           id === "education" ||
@@ -179,6 +180,16 @@ function normalizeNavigation(value: unknown): NavItem[] {
     base.splice(insertAt, 0, {
       id: "experience",
       label: "Experience",
+      enabled: true,
+    });
+  }
+
+  if (!base.some((item) => item.id === "github")) {
+    const aboutIndex = base.findIndex((item) => item.id === "about");
+    const insertAt = aboutIndex >= 0 ? aboutIndex + 1 : base.length;
+    base.splice(insertAt, 0, {
+      id: "github",
+      label: "GitHub",
       enabled: true,
     });
   }
@@ -204,6 +215,7 @@ export function normalizePortfolioData(
   const partial = isRecord(input) ? input : {};
   const profileSource = isRecord(partial.profile) ? partial.profile : {};
   const aboutSource = isRecord(partial.about) ? partial.about : {};
+  const githubSectionSource = isRecord(partial.githubSection) ? partial.githubSection : {};
   const experienceSectionSource = isRecord(partial.experienceSection)
     ? partial.experienceSection
     : {};
@@ -323,6 +335,10 @@ export function normalizePortfolioData(
       paragraphs: asStringArray(aboutSource.paragraphs, defaultPortfolioData.about.paragraphs),
       achievements: asStringArray(aboutSource.achievements, defaultPortfolioData.about.achievements),
     },
+    githubSection: {
+      heading: asString(githubSectionSource.heading, defaultPortfolioData.githubSection.heading),
+      subtext: asString(githubSectionSource.subtext, defaultPortfolioData.githubSection.subtext),
+    },
     experienceSection: {
       heading: asString(
         experienceSectionSource.heading,
@@ -416,6 +432,10 @@ export function normalizePortfolioData(
         typeof sectionsSource.aboutCard === "boolean"
           ? sectionsSource.aboutCard
           : defaultPortfolioData.sections.aboutCard,
+      github:
+        typeof sectionsSource.github === "boolean"
+          ? sectionsSource.github
+          : defaultPortfolioData.sections.github,
       experience:
         typeof sectionsSource.experience === "boolean"
           ? sectionsSource.experience

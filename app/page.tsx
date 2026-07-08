@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
-import GitHubActivityCard from "./components/GitHubActivityCard";
+import GitHubSection from "./components/GitHubSection";
 import PortfolioNavObserver from "./components/PortfolioNavObserver";
 import PortfolioAnalytics from "./components/PortfolioAnalytics";
 import ResumePickerButton from "./components/ResumePickerButton";
@@ -77,10 +77,11 @@ function getSkillsLayout(count: number) {
 
 export default async function Home() {
   const data = await getPortfolioData();
-  const { profile, heroStats, skills, about, contact, experienceSection, experiences, educationCertificationsSection, education, certifications, projectsSection, projectCategories, sections, navigation, resumes } =
+  const { profile, heroStats, skills, about, contact, githubSection, experienceSection, experiences, educationCertificationsSection, education, certifications, projectsSection, projectCategories, sections, navigation, resumes } =
     data;
   const featuredProjects = getFeaturedProjects(data);
-  const githubActivity = sections.hero ? await getGitHubActivity(profile.github) : null;
+  const githubActivity =
+    sections.github && profile.github ? await getGitHubActivity(profile.github) : null;
   const enabledNav = navigation.filter((item) => item.enabled);
   const skillsLayout = getSkillsLayout(skills.length);
 
@@ -131,6 +132,22 @@ export default async function Home() {
                   >
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
+                  </svg>
+                )}
+                {item.id === "github" && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-.1.56-.18.88-.27A13.16 13.16 0 0 0 16 5c-.88 0-1.7.3-2.36.8A6.6 6.6 0 0 0 9 5c-.34 0-.67.03-1 .08A4.48 4.48 0 0 0 5.5 8.5c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                    <path d="M9 18c-4.51 2-5-2-7-2" />
                   </svg>
                 )}
                 {item.id === "experience" && (
@@ -327,8 +344,6 @@ export default async function Home() {
                   <button type="button">{profile.availabilityText}</button>
                 </div>
               </div>
-
-              {githubActivity && <GitHubActivityCard activity={githubActivity} />}
             </div>
             )}
 
@@ -400,6 +415,14 @@ export default async function Home() {
               </div>
             </div>
           </div>
+          )}
+
+          {sections.github && githubActivity && (
+            <GitHubSection
+              activity={githubActivity}
+              heading={githubSection.heading}
+              subtext={githubSection.subtext}
+            />
           )}
 
           {sections.experience && experiences.length > 0 && (

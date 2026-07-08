@@ -25,7 +25,7 @@ export type PortfolioProject = {
 };
 
 export type NavItem = {
-  id: "about" | "experience" | "projects" | "education" | "contact";
+  id: "about" | "github" | "experience" | "projects" | "education" | "contact";
   label: string;
   enabled: boolean;
 };
@@ -38,6 +38,7 @@ export type SectionVisibility = {
   projects: boolean;
   education: boolean;
   contact: boolean;
+  github: boolean;
 };
 
 export type ExperienceItem = {
@@ -99,6 +100,10 @@ export type PortfolioData = {
     subheading: string;
     paragraphs: string[];
     achievements: string[];
+  };
+  githubSection: {
+    heading: string;
+    subtext: string;
   };
   experienceSection: {
     heading: string;

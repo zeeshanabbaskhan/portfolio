@@ -1026,6 +1026,13 @@ export default function AdminDashboard() {
                 }
               />
               <ToggleField
+                label="GitHub Section"
+                checked={data.sections.github}
+                onChange={(github) =>
+                  update((p) => ({ ...p, sections: { ...p.sections, github } }))
+                }
+              />
+              <ToggleField
                 label="Experience Section"
                 checked={data.sections.experience}
                 onChange={(experience) =>
@@ -1053,6 +1060,31 @@ export default function AdminDashboard() {
                   update((p) => ({ ...p, sections: { ...p.sections, contact } }))
                 }
               />
+              <div className="admin-panel" style={{ marginTop: 24 }}>
+                <h3>GitHub Section Copy</h3>
+                <div className="admin-grid">
+                  <TextField
+                    label="Section Heading"
+                    value={data.githubSection.heading}
+                    onChange={(heading) =>
+                      update((p) => ({
+                        ...p,
+                        githubSection: { ...p.githubSection, heading },
+                      }))
+                    }
+                  />
+                  <TextField
+                    label="Section Subtext"
+                    value={data.githubSection.subtext}
+                    onChange={(subtext) =>
+                      update((p) => ({
+                        ...p,
+                        githubSection: { ...p.githubSection, subtext },
+                      }))
+                    }
+                  />
+                </div>
+              </div>
             </div>
           )}
 
