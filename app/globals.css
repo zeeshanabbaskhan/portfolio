@@ -839,6 +839,8 @@ a {
 }
 
 .portfolio-home .github-panel {
+  position: relative;
+  overflow: hidden;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 16px;
@@ -1026,6 +1028,8 @@ a {
 }
 
 .portfolio-home .github-repo-box {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 4px;

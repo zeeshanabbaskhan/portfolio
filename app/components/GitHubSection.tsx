@@ -20,7 +20,7 @@ export default function GitHubSection({ activity, heading, subtext }: GitHubSect
           <p className="github-section-subtext">{subtext}</p>
         </div>
 
-        <div className="github-section-card glass-card hover-lift hover-shine">
+        <div className="github-section-card glass-card">
           <div className="github-profile-row">
             {activity.avatarUrl && (
               <img
@@ -81,7 +81,7 @@ export default function GitHubSection({ activity, heading, subtext }: GitHubSect
           </div>
 
           <div className="github-panels">
-            <div className="github-panel github-panel-activity">
+            <div className="github-panel github-panel-activity hover-lift hover-shine">
               <div className="github-activity-heatmap">
                 <h3>Contribution Graph</h3>
                 <div className="github-heatmap-layout">
@@ -146,7 +146,7 @@ export default function GitHubSection({ activity, heading, subtext }: GitHubSect
                         href={repo.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="github-repo-box"
+                        className="github-repo-box hover-lift hover-shine"
                         title={repo.description ?? repo.name}
                       >
                         <span className="github-repo-name">{repo.name}</span>
@@ -161,7 +161,7 @@ export default function GitHubSection({ activity, heading, subtext }: GitHubSect
               </div>
             </div>
 
-            <div className="github-panel github-panel-languages">
+            <div className="github-panel github-panel-languages hover-lift hover-shine">
               <h3>Top Languages</h3>
               {activity.languages.length === 0 ? (
                 <p className="github-empty">No language data available yet.</p>
