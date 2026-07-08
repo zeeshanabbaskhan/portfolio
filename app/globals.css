@@ -835,12 +835,38 @@ a {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr);
   gap: 20px;
+  align-items: stretch;
 }
 
 .portfolio-home .github-panel {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 20px;
+}
+
+.portfolio-home .github-panel-activity,
+.portfolio-home .github-panel-languages {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.portfolio-home .github-activity-heatmap {
+  flex-shrink: 0;
+}
+
+.portfolio-home .github-activity-repos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-home .github-panel-languages .github-languages {
+  flex: 1;
 }
 
 .portfolio-home .github-panel h3 {
@@ -856,6 +882,26 @@ a {
   gap: 8px;
   overflow-x: auto;
   padding-bottom: 4px;
+  scrollbar-color: rgba(255, 255, 255, 0.22) rgba(255, 255, 255, 0.05);
+  scrollbar-width: thin;
+}
+
+.portfolio-home .github-heatmap-layout::-webkit-scrollbar {
+  height: 8px;
+}
+
+.portfolio-home .github-heatmap-layout::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.portfolio-home .github-heatmap-layout::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 4px;
+}
+
+.portfolio-home .github-heatmap-layout::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.32);
 }
 
 .portfolio-home .github-day-labels {
@@ -878,14 +924,18 @@ a {
 }
 
 .portfolio-home .github-month-labels {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 11px;
-  gap: 3px;
+  position: relative;
   height: 18px;
   margin-bottom: 4px;
+}
+
+.portfolio-home .github-month-labels span {
+  position: absolute;
+  top: 0;
   font-size: 10px;
   color: #8b949e;
+  white-space: nowrap;
+  line-height: 18px;
 }
 
 .portfolio-home .github-heatmap {
@@ -943,12 +993,6 @@ a {
   height: 10px;
 }
 
-.portfolio-home .github-side-panels {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 .portfolio-home .github-languages {
   display: flex;
   flex-direction: column;
@@ -996,11 +1040,30 @@ a {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-color: rgba(255, 255, 255, 0.22) rgba(255, 255, 255, 0.05);
+  scrollbar-width: thin;
+}
+
+.portfolio-home .github-repos::-webkit-scrollbar {
+  width: 6px;
+}
+
+.portfolio-home .github-repos::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.portfolio-home .github-repos::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 4px;
 }
 
 .portfolio-home .github-repo-item {
   display: block;
-  padding: 12px;
+  padding: 10px 12px;
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
@@ -1033,10 +1096,14 @@ a {
 }
 
 .portfolio-home .github-repo-desc {
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: 11px;
+  line-height: 1.45;
   color: #9a9a9a;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .portfolio-home .github-repo-lang {

@@ -357,23 +357,21 @@ export function getContributionLevel(count: number): number {
   return 4;
 }
 
-export function buildFullYearHeatmap(contributions: GitHubContributionDay[]) {
-  if (contributions.length === 0) {
-    return { weeks: [], monthLabels: [] as Array<{ label: string; weekIndex: number }> };
-  }
+export const GITHUB_HEATMAP_CELL_STEP = 14;
 
-  const sorted = [...contributions].sort((a, b) => a.date.localeCompare(b.date));
-  const byDate = new Map(sorted.map((day) => [day.date, day]));
-
-  const firstDate = sorted[0].date;
-  const lastDate = sorted[sorted.length - 1].date;
-
-  const firstParts = parseDateParts(firstDate);
-  const start = new Date(Date.UTC(firstParts.year, firstParts.month - 1, firstParts.day));
+function getLastYearHeatmapRange() {
+  const now = new Date();
+  const end = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const start = new Date(end);
+  start.setUTCDate(start.getUTCDate() - 364);
   start.setUTCDate(start.getUTCDate() - start.getUTCDay());
 
-  const lastParts = parseDateParts(lastDate);
-  const end = new Date(Date.UTC(lastParts.year, lastParts.month - 1, lastParts.day));
+  return { start, end };
+}
+
+export function buildFullYearHeatmap(contributions: GitHubContributionDay[]) {
+  const byDate = new Map(contributions.map((day) => [day.date, day]));
+  const { start, end } = getLastYearHeatmapRange();
 
   const weeks: Array<Array<GitHubContributionDay & { level: number }>> = [];
   const cursor = new Date(start);
@@ -388,7 +386,7 @@ export function buildFullYearHeatmap(contributions: GitHubContributionDay[]) {
       monthLabels.push({
         label: new Date(Date.UTC(cursor.getUTCFullYear(), weekStartMonth, 1)).toLocaleString(
           "en-US",
-          { month: "short" }
+          { month: "short", timeZone: "UTC" }
         ),
         weekIndex,
       });
@@ -398,6 +396,16 @@ export function buildFullYearHeatmap(contributions: GitHubContributionDay[]) {
     const week: Array<GitHubContributionDay & { level: number }> = [];
 
     for (let i = 0; i < 7; i += 1) {
+      if (cursor > end) {
+        week.push({
+          date: cursor.toISOString().slice(0, 10),
+          count: 0,
+          level: 0,
+        });
+        cursor.setUTCDate(cursor.getUTCDate() + 1);
+        continue;
+      }
+
       const date = cursor.toISOString().slice(0, 10);
       const entry = byDate.get(date);
       const count = entry?.count ?? 0;
