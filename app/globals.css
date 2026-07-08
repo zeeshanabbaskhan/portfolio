@@ -841,7 +841,7 @@ a {
 .portfolio-home .github-panel {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 20px;
+  padding: 16px;
 }
 
 .portfolio-home .github-panel-activity,
@@ -856,13 +856,14 @@ a {
 }
 
 .portfolio-home .github-activity-repos {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  margin-top: 20px;
-  padding-top: 20px;
+  flex-shrink: 0;
+  margin-top: 14px;
+  padding-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-home .github-activity-repos h3 {
+  margin-bottom: 10px;
 }
 
 .portfolio-home .github-panel-languages .github-languages {
@@ -870,48 +871,29 @@ a {
 }
 
 .portfolio-home .github-panel h3 {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--white);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   letter-spacing: 0.02em;
 }
 
 .portfolio-home .github-heatmap-layout {
+  --github-cell-size: 8px;
+  --github-cell-gap: 2px;
   display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  scrollbar-color: rgba(255, 255, 255, 0.22) rgba(255, 255, 255, 0.05);
-  scrollbar-width: thin;
-}
-
-.portfolio-home .github-heatmap-layout::-webkit-scrollbar {
-  height: 8px;
-}
-
-.portfolio-home .github-heatmap-layout::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-}
-
-.portfolio-home .github-heatmap-layout::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.22);
-  border-radius: 4px;
-}
-
-.portfolio-home .github-heatmap-layout::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.32);
+  gap: 6px;
+  overflow: hidden;
 }
 
 .portfolio-home .github-day-labels {
   display: grid;
-  grid-template-rows: repeat(7, 11px);
-  gap: 3px;
-  padding-top: 22px;
-  font-size: 9px;
+  grid-template-rows: repeat(7, var(--github-cell-size));
+  gap: var(--github-cell-gap);
+  padding-top: 16px;
+  font-size: 8px;
   color: #6e7681;
-  line-height: 11px;
+  line-height: var(--github-cell-size);
 }
 
 .portfolio-home .github-day-labels .muted {
@@ -925,34 +907,35 @@ a {
 
 .portfolio-home .github-month-labels {
   position: relative;
-  height: 18px;
-  margin-bottom: 4px;
+  height: 14px;
+  margin-bottom: 2px;
 }
 
 .portfolio-home .github-month-labels span {
   position: absolute;
   top: 0;
-  font-size: 10px;
+  font-size: 9px;
   color: #8b949e;
   white-space: nowrap;
-  line-height: 18px;
+  line-height: 14px;
 }
 
 .portfolio-home .github-heatmap {
   display: flex;
-  gap: 3px;
-  min-width: max-content;
+  gap: var(--github-cell-gap);
+  width: 100%;
+  min-width: 0;
 }
 
 .portfolio-home .github-week {
   display: grid;
-  grid-template-rows: repeat(7, 11px);
-  gap: 3px;
+  grid-template-rows: repeat(7, var(--github-cell-size));
+  gap: var(--github-cell-gap);
 }
 
 .portfolio-home .github-cell {
-  width: 11px;
-  height: 11px;
+  width: var(--github-cell-size);
+  height: var(--github-cell-size);
   border-radius: 2px;
   display: inline-block;
   background: #161b22;
@@ -982,21 +965,21 @@ a {
 .portfolio-home .github-legend {
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin-top: 12px;
-  font-size: 10px;
+  gap: 3px;
+  margin-top: 8px;
+  font-size: 9px;
   color: #8b949e;
 }
 
 .portfolio-home .github-legend .github-cell {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 .portfolio-home .github-languages {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .portfolio-home .github-language-meta {
@@ -1037,78 +1020,48 @@ a {
 }
 
 .portfolio-home .github-repos {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.portfolio-home .github-repo-box {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  scrollbar-color: rgba(255, 255, 255, 0.22) rgba(255, 255, 255, 0.05);
-  scrollbar-width: thin;
-}
-
-.portfolio-home .github-repos::-webkit-scrollbar {
-  width: 6px;
-}
-
-.portfolio-home .github-repos::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-}
-
-.portfolio-home .github-repos::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.22);
-  border-radius: 4px;
-}
-
-.portfolio-home .github-repo-item {
-  display: block;
-  padding: 10px 12px;
+  gap: 4px;
+  min-width: 0;
+  padding: 8px;
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
-.portfolio-home .github-repo-item:hover {
+.portfolio-home .github-repo-box:hover {
   border-color: rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.04);
 }
 
-.portfolio-home .github-repo-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
 .portfolio-home .github-repo-name {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
   color: #58a6ff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .portfolio-home .github-repo-stars {
-  font-size: 11px;
+  font-size: 10px;
   color: #8b949e;
-  flex-shrink: 0;
-}
-
-.portfolio-home .github-repo-desc {
-  font-size: 11px;
-  line-height: 1.45;
-  color: #9a9a9a;
-  margin-bottom: 6px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .portfolio-home .github-repo-lang {
-  font-size: 11px;
+  font-size: 9px;
   color: #8b949e;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .portfolio-home .github-empty {
@@ -1123,6 +1076,10 @@ a {
 
   .portfolio-home .github-panels {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-home .github-repos {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
@@ -1139,6 +1096,14 @@ a {
     width: 100%;
     text-align: center;
     margin-left: 0;
+  }
+
+  .portfolio-home .github-repos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-home .github-heatmap-layout {
+    --github-cell-size: 7px;
   }
 }
 

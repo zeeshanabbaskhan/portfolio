@@ -140,21 +140,17 @@ export default function GitHubSection({ activity, heading, subtext }: GitHubSect
                   <p className="github-empty">No public repositories found.</p>
                 ) : (
                   <div className="github-repos">
-                    {activity.topRepos.map((repo) => (
+                    {activity.topRepos.slice(0, 5).map((repo) => (
                       <a
                         key={repo.name}
                         href={repo.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="github-repo-item"
+                        className="github-repo-box"
+                        title={repo.description ?? repo.name}
                       >
-                        <div className="github-repo-head">
-                          <span className="github-repo-name">{repo.name}</span>
-                          <span className="github-repo-stars">★ {repo.stars}</span>
-                        </div>
-                        {repo.description && (
-                          <p className="github-repo-desc">{repo.description}</p>
-                        )}
+                        <span className="github-repo-name">{repo.name}</span>
+                        <span className="github-repo-stars">★ {repo.stars}</span>
                         {repo.language && (
                           <span className="github-repo-lang">{repo.language}</span>
                         )}

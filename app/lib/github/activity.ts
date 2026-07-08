@@ -357,7 +357,9 @@ export function getContributionLevel(count: number): number {
   return 4;
 }
 
-export const GITHUB_HEATMAP_CELL_STEP = 14;
+export const GITHUB_HEATMAP_CELL_SIZE = 8;
+export const GITHUB_HEATMAP_CELL_GAP = 2;
+export const GITHUB_HEATMAP_CELL_STEP = GITHUB_HEATMAP_CELL_SIZE + GITHUB_HEATMAP_CELL_GAP;
 
 function getLastYearHeatmapRange() {
   const now = new Date();
