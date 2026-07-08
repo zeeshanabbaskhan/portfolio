@@ -269,9 +269,6 @@ export default async function Home() {
                     </svg>
                   }
                 />
-                <a href="#projects" className="btn-outline">
-                  {data.heroButtons.viewWork}
-                </a>
               </div>
             </div>
             )}

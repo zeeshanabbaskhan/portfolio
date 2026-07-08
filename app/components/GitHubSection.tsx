@@ -81,10 +81,10 @@ export default function GitHubSection({ activity, heading, subtext }: GitHubSect
           </div>
 
           <div className="github-panels">
-            <div className="github-panel github-panel-activity hover-lift hover-shine">
+            <div className="github-panel github-panel-activity">
               <div className="github-activity-heatmap">
                 <h3>Contribution Graph</h3>
-                <div className="github-heatmap-layout">
+                <div className="github-heatmap-layout hover-shine">
                   <div className="github-day-labels">
                     {DAY_LABELS.map((label, index) => (
                       <span key={label} className={index % 2 === 0 ? "" : "muted"}>
@@ -146,7 +146,7 @@ export default function GitHubSection({ activity, heading, subtext }: GitHubSect
                         href={repo.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="github-repo-box hover-lift hover-shine"
+                        className="github-repo-box"
                         title={repo.description ?? repo.name}
                       >
                         <span className="github-repo-name">{repo.name}</span>

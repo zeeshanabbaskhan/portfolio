@@ -92,7 +92,6 @@ export type PortfolioData = {
   heroStats: Array<{ value: string; label: string }>;
   heroButtons: {
     downloadCv: string;
-    viewWork: string;
   };
   skills: SkillCategory[];
   about: {

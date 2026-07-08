@@ -322,7 +322,6 @@ export function normalizePortfolioData(
         heroButtonsSource.downloadCv,
         defaultPortfolioData.heroButtons.downloadCv
       ),
-      viewWork: asString(heroButtonsSource.viewWork, defaultPortfolioData.heroButtons.viewWork),
     },
     skills: Array.isArray(partial.skills)
       ? normalizeSkills(partial.skills).slice(0, 6)

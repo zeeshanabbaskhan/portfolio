@@ -20,7 +20,6 @@ export const defaultPortfolioData: PortfolioData = {
   ],
   heroButtons: {
     downloadCv: "Download CV",
-    viewWork: "View My Work",
   },
   skills: [
     {

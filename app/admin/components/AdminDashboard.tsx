@@ -447,13 +447,6 @@ export default function AdminDashboard() {
                       update((p) => ({ ...p, heroButtons: { ...p.heroButtons, downloadCv } }))
                     }
                   />
-                  <TextField
-                    label="View Work Button"
-                    value={data.heroButtons.viewWork}
-                    onChange={(viewWork) =>
-                      update((p) => ({ ...p, heroButtons: { ...p.heroButtons, viewWork } }))
-                    }
-                  />
                 </div>
               </div>
               <StatListEditor

@@ -72,7 +72,7 @@ export default function ResumePickerButton({
             <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
             <circle cx="12" cy="12" r="3" />
           </svg>
-          <span>View</span>
+          <span>View CV</span>
         </a>
         <a
           href={getResumeDownloadApiPath(resume.id)}
@@ -96,7 +96,7 @@ export default function ResumePickerButton({
               <line x1="12" y1="15" x2="12" y2="3" />
             </svg>
           )}
-          <span>Download</span>
+          <span>Download CV</span>
         </a>
       </div>
     );
@@ -124,7 +124,7 @@ export default function ResumePickerButton({
             <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
             <circle cx="12" cy="12" r="3" />
           </svg>
-          <span>View</span>
+          <span>View CV</span>
         </button>
         <button
           type="button"
@@ -148,7 +148,7 @@ export default function ResumePickerButton({
               <line x1="12" y1="15" x2="12" y2="3" />
             </svg>
           )}
-          <span>Download</span>
+          <span>Download CV</span>
         </button>
       </div>
 
