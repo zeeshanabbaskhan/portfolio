@@ -1,9 +1,11 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
+import GitHubActivityCard from "./components/GitHubActivityCard";
 import PortfolioNavObserver from "./components/PortfolioNavObserver";
 import PortfolioAnalytics from "./components/PortfolioAnalytics";
 import ResumePickerButton from "./components/ResumePickerButton";
 import type { PortfolioProject } from "./data/portfolioTypes";
+import { getGitHubActivity } from "./lib/github/activity";
 import { getFeaturedProjects, getPortfolioData } from "./lib/portfolioStore";
 import { getProjectCategoryLabel } from "./lib/projectUtils";
 
@@ -78,6 +80,7 @@ export default async function Home() {
   const { profile, heroStats, skills, about, contact, experienceSection, experiences, educationCertificationsSection, education, certifications, projectsSection, projectCategories, sections, navigation, resumes } =
     data;
   const featuredProjects = getFeaturedProjects(data);
+  const githubActivity = sections.hero ? await getGitHubActivity(profile.github) : null;
   const enabledNav = navigation.filter((item) => item.enabled);
   const skillsLayout = getSkillsLayout(skills.length);
 
@@ -324,6 +327,8 @@ export default async function Home() {
                   <button type="button">{profile.availabilityText}</button>
                 </div>
               </div>
+
+              {githubActivity && <GitHubActivityCard activity={githubActivity} />}
             </div>
             )}
 
@@ -568,6 +573,25 @@ export default async function Home() {
                     </article>
                   );
                 })}
+              </div>
+
+              <div className="projects-footer scroll-reveal animate-fade-in-up revealed">
+                <a className="projects-all-link glass-card hover-lift hover-shine" href="/projects">
+                  {projectsSection.viewAllLabel}
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
               </div>
             </div>
           </section>

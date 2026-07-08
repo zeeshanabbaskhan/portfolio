@@ -9,7 +9,7 @@ type RouteContext = {
   params: Promise<{ id: string }>;
 };
 
-export async function GET(_request: Request, context: RouteContext) {
+export async function GET(request: Request, context: RouteContext) {
   try {
     const { id } = await context.params;
     const resume = await getResumeFileById(id);
@@ -20,12 +20,14 @@ export async function GET(_request: Request, context: RouteContext) {
 
     const webStream = Readable.toWeb(resume.stream as Readable) as ReadableStream;
     const safeName = resume.title.replace(/[^a-z0-9-_ ]/gi, "").trim() || "resume";
+    const { searchParams } = new URL(request.url);
+    const shouldDownload = searchParams.get("download") === "1";
 
     return new NextResponse(webStream, {
       headers: {
         "Content-Type": resume.contentType,
         "Content-Length": String(resume.length),
-        "Content-Disposition": `inline; filename="${safeName}.pdf"`,
+        "Content-Disposition": `${shouldDownload ? "attachment" : "inline"}; filename="${safeName}.pdf"`,
         "Cache-Control": "public, max-age=3600",
       },
     });

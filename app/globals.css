@@ -392,10 +392,146 @@ a {
 
 .portfolio-home .hero-info {
   width: 100%;
-  padding: 16px 24px 22px;
+  padding: 16px 24px 14px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.portfolio-home .hero-github-card {
+  margin: 0 16px 18px;
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.portfolio-home .hero-github-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.portfolio-home .hero-github-kicker {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.portfolio-home .hero-github-username {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.portfolio-home .hero-github-username:hover {
+  text-decoration: underline;
+}
+
+.portfolio-home .hero-github-icon {
+  width: 22px;
+  height: 22px;
+  color: #bdbdbd;
+  flex-shrink: 0;
+}
+
+.portfolio-home .hero-github-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.portfolio-home .hero-github-stat {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.portfolio-home .hero-github-stat strong {
+  display: block;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.portfolio-home .hero-github-stat span {
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.portfolio-home .hero-github-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.portfolio-home .hero-github-heatmap-wrap {
+  overflow-x: auto;
+}
+
+.portfolio-home .hero-github-heatmap {
+  display: flex;
+  gap: 3px;
+  min-width: max-content;
+  padding-bottom: 4px;
+}
+
+.portfolio-home .hero-github-week {
+  display: grid;
+  grid-template-rows: repeat(7, 10px);
+  gap: 3px;
+}
+
+.portfolio-home .hero-github-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.portfolio-home .hero-github-cell.level-1 {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.portfolio-home .hero-github-cell.level-2 {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.portfolio-home .hero-github-cell.level-3 {
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.portfolio-home .hero-github-cell.level-4 {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.portfolio-home .hero-github-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 10px;
+  color: #777;
+}
+
+.portfolio-home .hero-github-legend .hero-github-cell {
+  width: 9px;
+  height: 9px;
 }
 
 .portfolio-home .info-row {
@@ -603,6 +739,10 @@ a {
 
   .portfolio-home .hero-photo {
     min-height: 240px;
+  }
+
+  .portfolio-home .hero-github-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1117,6 +1257,13 @@ a {
   gap: 22px;
 }
 
+.portfolio-home .projects-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  padding-top: 8px;
+}
+
 .portfolio-home .project-glow-card {
   position: relative;
   overflow: hidden;
@@ -1536,6 +1683,48 @@ a {
 .portfolio-home .contact-download:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.3);
+}
+
+.resume-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.resume-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.resume-action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.resume-action-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.portfolio-home .resume-action-row .contact-download {
+  width: auto;
+  min-width: 126px;
+}
+
+.portfolio-home .hero-btns .resume-action-row {
+  width: 100%;
 }
 
 .portfolio-home .contact-social-wrap {
