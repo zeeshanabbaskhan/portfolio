@@ -227,8 +227,12 @@ export default async function Home() {
               <div>
                 <h1 className="hero-name" itemProp="name">
                   {firstLine}
-                  <br />
-                  <span>{secondLine}</span>
+                  {secondLine ? (
+                    <>
+                      {" "}
+                      <span>{secondLine}</span>
+                    </>
+                  ) : null}
                 </h1>
                 <p className="hero-tag" itemProp="jobTitle">
                   <span className="text-tech">&lt;</span>
